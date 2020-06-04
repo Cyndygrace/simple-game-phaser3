@@ -1,7 +1,6 @@
 /// <reference path="../../typings/phaser.d.ts" />
 import Phaser from 'phaser';
-import config from '../config';
-
+import Hero from '../entities/Hero';
 // this class houses the main game logic
 class Game extends Phaser.Scene {
   constructor() {
@@ -31,19 +30,8 @@ class Game extends Phaser.Scene {
       // keep playing continously
       repeat: -1,
     });
-    // add sprite defined in preload method to scene with x and y position, key parameters
-    // the index parameter specifies which one of the spirite image on the texture atlas should be displayed.
-    // .physics, adds the physics descriped in the config to our character
-    this.player = this.physics.add.sprite(250, 160, 'hero-run-sheet');
-    // add animation to sprite-sheet
-    this.player.anims.play('hero-running');
-
-    // prevent body from falling out of the game boundary and collide within the boundary of the world
-    this.player.body.setCollideWorldBounds(true);
-    // set size of collission rectangle
-    this.player.body.setSize(12, 40);
-    // set position of collission rectangle
-    this.player.body.setOffset(12, 23);
+    // call hero method with the arguments
+    this.hero = new Hero(this, 250, 160);
   }
 
   // calls the method 60 times per sec.
