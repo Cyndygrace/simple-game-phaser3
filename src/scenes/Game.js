@@ -9,8 +9,33 @@ class Game extends Phaser.Scene {
 
   // preloads all images needed for the game
   preload() {
-    // load sprite sheet with parameters: key, path and dimension
+    // load sprite sheet for standing idle with parameters: key, path and dimension
+    this.load.spritesheet('hero-idle-sheet', 'assets/hero/idle.png', {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
+    // load sprite sheet for running with parameters: key, path and dimension
     this.load.spritesheet('hero-run-sheet', 'assets/hero/run.png', {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
+    // load sprite sheet for pivoting with parameters: key, path and dimension
+    this.load.spritesheet('hero-pivot-sheet', 'assets/hero/pivot.png', {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
+    // load sprite sheet for jumping with parameters: key, path and dimension
+    this.load.spritesheet('hero-jump-sheet', 'assets/hero/jump.png', {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
+    // load sprite sheet for double jump flip with parameters: key, path and dimension
+    this.load.spritesheet('hero-flip-sheet', 'assets/hero/spinjump.png', {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
+    // load sprite sheet for falling with parameters: key, path and dimension
+    this.load.spritesheet('hero-fall-sheet', 'assets/hero/fall.png', {
       frameWidth: 32,
       frameHeight: 64,
     });
