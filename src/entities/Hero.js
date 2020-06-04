@@ -1,5 +1,6 @@
 /// <reference path="../../typings/phaser.d.ts" />
 import Phaser from 'phaser';
+import StateMachine from 'javascript-state-machine';
 
 class Hero extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y) {
