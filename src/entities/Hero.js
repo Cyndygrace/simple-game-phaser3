@@ -19,7 +19,8 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.body.setSize(12, 40);
     // set position of collission rectangle(distance between the hero and the top-left corner of the texture atlas)
     this.body.setOffset(12, 23);
-
+    // set top speed for hero by setting max velocity for x and y
+    this.body.setMaxVelocity(250, 400);
     // get keyboard keys from scene (game file)
     this.keys = scene.cursorKeys;
   }
