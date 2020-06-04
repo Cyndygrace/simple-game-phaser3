@@ -31,9 +31,10 @@ class Game extends Phaser.Scene {
       // keep playing continously
       repeat: -1,
     });
-    // add sprite defined in preload method to scene with x and y position, key and index parameters
+    // add sprite defined in preload method to scene with x and y position, key parameters
     // the index parameter specifies which one of the spirite image on the texture atlas should be displayed.
-    this.player = this.add.sprite(400, 300, 'hero-run-sheet');
+    // .physics, adds the physics descriped in the config to our character
+    this.player = this.physics.add.sprite(400, 300, 'hero-run-sheet');
     // add animation to sprite-sheet
     this.player.anims.play('hero-running');
   }
