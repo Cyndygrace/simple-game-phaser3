@@ -21,6 +21,8 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.body.setOffset(12, 23);
     // set top speed for hero by setting max velocity for x and y
     this.body.setMaxVelocity(250, 400);
+    // slow character down when not acceleratiing
+    this.body.setDragX(750);
     // get keyboard keys from scene (game file)
     this.keys = scene.cursorKeys;
   }
@@ -32,7 +34,7 @@ class Hero extends Phaser.GameObjects.Sprite {
       // move left with left arrow key
       // reach 250 in quater of a second, set velocity to 4 * 250
       // reduce or increase set velocity value to balance movement speed with hero body movement
-      this.body.setVelocityX(-150);
+      this.body.setAccelerationX(-1000);
 
       // flip character when running
       this.setFlipX(true);
@@ -41,7 +43,7 @@ class Hero extends Phaser.GameObjects.Sprite {
       this.body.offset.x = 8;
     } else if (this.keys.right.isDown) {
       // move right with right arrorw key
-      this.body.setVelocityX(150);
+      this.body.setAccelerationX(1000);
       // reset flip when hero is running in opposite direction
       this.setFlipX(false);
 
@@ -49,7 +51,9 @@ class Hero extends Phaser.GameObjects.Sprite {
       this.body.offset.x = 12;
     } else {
       // set X movement to 0 when no key is pressed
-      this.body.setVelocityX(0);
+      this.body.setAccelerationX(0);
+    }
+
     }
   }
 }
