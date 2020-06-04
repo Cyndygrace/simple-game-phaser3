@@ -34,12 +34,16 @@ class Game extends Phaser.Scene {
     // add sprite defined in preload method to scene with x and y position, key parameters
     // the index parameter specifies which one of the spirite image on the texture atlas should be displayed.
     // .physics, adds the physics descriped in the config to our character
-    this.player = this.physics.add.sprite(400, 300, 'hero-run-sheet');
+    this.player = this.physics.add.sprite(250, 160, 'hero-run-sheet');
     // add animation to sprite-sheet
     this.player.anims.play('hero-running');
 
     // prevent body from falling out of the game boundary and collide within the boundary of the world
-    this.player.body.setCollideWorldBounds(true)
+    this.player.body.setCollideWorldBounds(true);
+    // set size of collission rectangle
+    this.player.body.setSize(12, 40);
+    // set position of collission rectangle
+    this.player.body.setOffset(12, 23);
   }
 
   // calls the method 60 times per sec.
