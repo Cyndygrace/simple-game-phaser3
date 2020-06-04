@@ -19,6 +19,23 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.body.setSize(12, 40);
     // set position of collission rectangle
     this.body.setOffset(12, 23);
+
+    this.keys = scene.cursorKeys;
+  }
+
+  preUpdate(time, delta) {
+    super.preUpdate(time, delta);
+
+    if (this.keys.left.isDown) {
+      // move left with left arrow key
+      this.body.setVelocityX(-250);
+    } else if (this.keys.right.isDown) {
+      // move right with right arrorw key
+      this.body.setVelocityX(250);
+    } else {
+      // set X movement to 0 when no key is pressed
+      this.body.setVelocityX(0);
+    }
   }
 }
 
