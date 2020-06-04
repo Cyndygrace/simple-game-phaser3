@@ -18,4 +18,7 @@ export default {
     // center horizontally and vertically
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
+  physics: {
+    // specigy physics engine
+    default:'arcade',
 };
