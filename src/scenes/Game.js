@@ -29,7 +29,7 @@ class Game extends Phaser.Scene {
       // frame to include all the sprites that forms running on the spirte sheet
       frames: this.anims.generateFrameNumbers('hero-run-sheet'),
       // tells phaser to display 10 frames per sec
-      frameRate: 6,
+      frameRate: 10,
       // keep playing continously
       repeat: -1,
     });
