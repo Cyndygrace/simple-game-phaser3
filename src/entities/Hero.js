@@ -17,9 +17,10 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.body.setCollideWorldBounds(true);
     // set size of collission rectangle
     this.body.setSize(12, 40);
-    // set position of collission rectangle
+    // set position of collission rectangle(distance between the hero and the top-left corner of the texture atlas)
     this.body.setOffset(12, 23);
 
+    // get keyboard keys from scene (game file)
     this.keys = scene.cursorKeys;
   }
 
@@ -29,9 +30,20 @@ class Hero extends Phaser.GameObjects.Sprite {
     if (this.keys.left.isDown) {
       // move left with left arrow key
       this.body.setVelocityX(-250);
+
+      // flip character when running
+      this.setFlipX(true);
+
+      // reset the collision rectangle during flip (32-12-12)(horizontal texture atlas - horizontal collission rectangle - offset rectangle)
+      this.body.offset.x = 8;
     } else if (this.keys.right.isDown) {
       // move right with right arrorw key
       this.body.setVelocityX(250);
+      // reset flip when hero is running in opposite direction
+      this.setFlipX(false);
+
+      // reset collission rectangle to original offset
+      this.body.offset.x = 12;
     } else {
       // set X movement to 0 when no key is pressed
       this.body.setVelocityX(0);
