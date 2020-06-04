@@ -21,4 +21,16 @@ export default {
   physics: {
     // specigy physics engine
     default:'arcade',
+    arcade: {
+      // set gravity to velocity of 750pixel per second to any physics body in downwards direction.
+      gravity: {y: 750 },
+      // for debugging purposes
+      debug: true,
+      debugShowVelocity: true,
+      debugShowBody: true,
+      debugShowStaticBody: true,
+
+    }
+
+  }
 };
