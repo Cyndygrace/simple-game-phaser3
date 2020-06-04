@@ -37,6 +37,9 @@ class Game extends Phaser.Scene {
     this.player = this.physics.add.sprite(400, 300, 'hero-run-sheet');
     // add animation to sprite-sheet
     this.player.anims.play('hero-running');
+
+    // prevent body from falling out of the game boundary and collide within the boundary of the world
+    this.player.body.setCollideWorldBounds(true)
   }
 
   // calls the method 60 times per sec.
