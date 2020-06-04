@@ -29,7 +29,9 @@ class Hero extends Phaser.GameObjects.Sprite {
 
     if (this.keys.left.isDown) {
       // move left with left arrow key
-      this.body.setVelocityX(-250);
+      // reach 250 in quater of a second, set velocity to 4 * 250
+      // reduce or increase set velocity value to balance movement speed with hero body movement
+      this.body.setVelocityX(-150);
 
       // flip character when running
       this.setFlipX(true);
@@ -38,7 +40,7 @@ class Hero extends Phaser.GameObjects.Sprite {
       this.body.offset.x = 8;
     } else if (this.keys.right.isDown) {
       // move right with right arrorw key
-      this.body.setVelocityX(250);
+      this.body.setVelocityX(150);
       // reset flip when hero is running in opposite direction
       this.setFlipX(false);
 
