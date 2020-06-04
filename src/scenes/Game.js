@@ -19,6 +19,9 @@ class Game extends Phaser.Scene {
   // creating a new game object and adding it to the scene
   // check docs for game object factory class
   create(data) {
+    // to access all arror keys, shift and space
+    this.cursorKeys = this.input.keyboard.createCursorKeys();
+
     // create animmation for the sprite-sheet
     this.anims.create({
       // key for refernce in other files
