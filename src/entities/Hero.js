@@ -30,7 +30,32 @@ class Hero extends Phaser.GameObjects.Sprite {
 
     this.setupMovement();
   }
-
+  // method responsible for creating our animation state machine
+  setupAnimations() {
+    this.animState = new StateMachine({
+      init: 'idle',
+      transitions: [
+        { name: 'idle', from: ['falling', 'running', 'pivoting'], to: 'idle' },
+        { name: 'run', from: ['falling', 'idle', 'pivoting'], to: 'running' },
+        { name: 'pivot', from: ['falling', 'running'], to: 'pivoting' },
+        { name: 'jump', from: ['idle', 'running', 'pivoting'], to: 'jumping' },
+        { name: 'flip', from: ['jumping', 'falling'], to: 'flipping' },
+        {
+          name: 'fall',
+          from: ['idle', 'running', 'pivoting', 'jumping', 'flipping'],
+          to: 'falling',
+        },
+      ],
+      methods: {
+        // this method gets called everytime the state changes and will be passed information about the state change which will be in the lifecycle object
+        onEnterState: (lifecycle) => {
+          // we can get the name of the state we just moved to via lifecycle.to
+          // convinient way of preventing us from writing a custom code from setting animation on each sprite
+          this.anims.play('hero-' + lifecycle.to);
+          console.log(lifecycle);
+        },
+      },
+    });
   setupMovement() {
     this.moveState = new StateMachine({
       init: 'standing',
