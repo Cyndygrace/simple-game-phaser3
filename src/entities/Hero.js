@@ -28,6 +28,7 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.keys = scene.cursorKeys;
     this.input = {};
 
+    this.setupAnimations();
     this.setupMovement();
   }
   // method responsible for creating our animation state machine
@@ -94,26 +95,22 @@ class Hero extends Phaser.GameObjects.Sprite {
       init: 'standing',
       transitions: [
         { name: 'jump', from: 'standing', to: 'jumping' },
-        { name: 'doubleJump', from: 'jumping', to: 'doubleJumping' },
-        {
-          name: 'fall',
-          from: 'standing',
-          to: 'falling',
-        },
+        { name: 'flip', from: 'jumping', to: 'flipping' },
+        { name: 'fall', from: 'standing', to: 'falling' },
         {
           name: 'touchDown',
-          from: ['jumping', 'doubleJumping', 'falling'],
+          from: ['jumping', 'flipping', 'falling'],
           to: 'standing',
         },
       ],
       methods: {
-        onEnterState: (lifecycle) => {
-          console.log(lifecycle);
-        },
+        // onEnterState: (lifecycle) => {
+        //   console.log(lifecycle);
+        // },
         onJump: () => {
           this.body.setVelocityY(-400);
         },
-        onDoubleJump: () => {
+        onFlip: () => {
           this.body.setVelocityY(-300);
         },
       },
@@ -122,7 +119,7 @@ class Hero extends Phaser.GameObjects.Sprite {
       jump: () => {
         return this.input.didPressJump;
       },
-      doubleJump: () => {
+      flip: () => {
         return this.input.didPressJump;
       },
       fall: () => {
@@ -164,13 +161,22 @@ class Hero extends Phaser.GameObjects.Sprite {
     }
     // if you press the up key for a short time and the jump of the character is less than -150, then set jump velocity to -150
     //  this allows us to control the height of the player so he doesn't always jump too high and die depending on if there is an obstacle that high
-    if (this.moveState.is('jumping') || this.moveState.is('doubleJumping'))
+    if (this.moveState.is('jumping') || this.moveState.is('flipping')) {
       if (!this.keys.up.isDown && this.body.velocity.y < -150) {
         this.body.setVelocityY(-150);
       }
+    }
+
+    // query the state machine on which of the transitions are valid and then we call the matching predicate method to check if we should make the transition.
     for (const t of this.moveState.transitions()) {
       if (t in this.movePredicates && this.movePredicates[t]()) {
         this.moveState[t]();
+        break;
+      }
+    }
+    for (const t of this.animState.transitions()) {
+      if (t in this.animPredicates && this.animPredicates[t]()) {
+        this.animState[t]();
         break;
       }
     }
