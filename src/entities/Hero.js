@@ -56,6 +56,39 @@ class Hero extends Phaser.GameObjects.Sprite {
         },
       },
     });
+    // add logic for triggering state changes
+    // first create predicates
+    this.animPredicates = {
+      // next, create a method for each transition making sure that the method name mathes each of the transition name
+      idle: () => {
+        // check if hero is on the ground and not moving horizontally
+        return this.body.onFloor() && this.body.velocity.x === 0;
+      },
+      run: () => {
+        // Math.sign(this.body.velocity.x) will return -1 if the velocity is less than 0, or return 0 if velocity === 0, or return 1 if velocity > 0
+        // checck if we are moving horizontally and if we are facing the direction we are moving
+        return (
+          this.body.onFloor() &&
+          Math.sign(this.body.velocity.x) === (this.flipX ? -1 : 1)
+        );
+      },
+      pivot: () => {
+        return (
+          this.body.onFloor() &&
+          Math.sign(this.body.velocity.x) === (this.flipX ? 1 : -1)
+        );
+      },
+      jump: () => {
+        return this.body.velocity.y < 0;
+      },
+      flip: () => {
+        return this.body.velocity.y < 0 && this.moveState.is('flipping');
+      },
+      fall: () => {
+        return this.body.velocity.y > 0;
+      },
+    };
+  }
   setupMovement() {
     this.moveState = new StateMachine({
       init: 'standing',
