@@ -19,6 +19,8 @@ class Game extends Phaser.Scene {
       margin: 1,
       spacing: 2,
     });
+    // load cloud image
+    this.load.image('clouds-sheet', 'assets/titlesets/clouds.png');
     // load sprite sheet for standing idle with parameters: key, path and dimension
     this.load.spritesheet('hero-idle-sheet', 'assets/hero/idle.png', {
       frameWidth: 32,
