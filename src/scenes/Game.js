@@ -166,6 +166,15 @@ class Game extends Phaser.Scene {
         this.hero.kill();
   }
     );
+    // what should happen to hero once killed
+    // let hero bounce of the screen by removing all collision detecttion with spikes, ground tiles and canvas boundary
+    // prevent camera from following hero.
+    this.hero.on('died', () => {
+      groundCollider.destroy();
+      spikeCollider.destroy();
+      this.hero.body.setCollideWorldBounds(false);
+      this.cameras.main.stopFollow();
+    });
   }
 
   // calls the method 60 times per sec.
