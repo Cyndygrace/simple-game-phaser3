@@ -146,6 +146,9 @@ class Game extends Phaser.Scene {
   addHero() {
     // set hero start position at the start of game
     this.hero = new Hero(this, this.spawnPos.x, this.spawnPos.y);
+    // to view the rest of the world to the end that is hidden when screen loads as hero is moving
+    this.cameras.main.startFollow(this.hero);
+    // switch index of foreground and hero so that foreground is drawn infront of hero
   }
   }
 
