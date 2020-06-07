@@ -31,3 +31,15 @@ Bundles and minimises scripts and outputs them along with a copy of the assets/ 
 To build for distribution run:
 
 `npm run build`
+
+## Game Asset
+1. Game assets can be gotten from; 
+itch.io. Click Browse games and select assets from the menu below.
+2. openGameArt.org
+3. pixel platformer pack (https://finalbossblues.itch.io/pixel-platformer-pack)
+
+## Sprite sheet
+
+## texture atlas
+
+## texture packer
