@@ -119,6 +119,11 @@ class Hero extends Phaser.GameObjects.Sprite {
         onFlip: () => {
           this.body.setVelocityY(-300);
         },
+        // hero should stop moving and bounce off the scree once dead
+        onDie: () => {
+          this.body.setVelocity(0, -500);
+          this.body.setAcceleration(0);
+      },
       },
     });
     this.movePredicates = {
