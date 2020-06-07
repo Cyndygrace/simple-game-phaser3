@@ -144,6 +144,8 @@ class Game extends Phaser.Scene {
     // create map image
   }
   addHero() {
+    // set hero start position at the start of game
+    this.hero = new Hero(this, this.spawnPos.x, this.spawnPos.y);
   }
   }
 
