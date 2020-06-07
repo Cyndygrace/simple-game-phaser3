@@ -30,7 +30,7 @@ export default {
       // set gravity to velocity of 750pixel per second to any physics body in downwards direction.
       gravity: { y: 750 },
       // for debugging purposes
-      debug: true,
+      debug: false,
       debugShowVelocity: true,
       debugShowBody: true,
       debugShowStaticBody: true,
