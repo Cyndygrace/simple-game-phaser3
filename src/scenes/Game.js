@@ -122,6 +122,15 @@ class Game extends Phaser.Scene {
       // keep playing continously
       repeat: -1,
     });
+    // create animmation for the sprite-sheet
+    this.anims.create({
+      // key for refernce in other files
+      key: 'hero-dead',
+      // frame to include all the sprites that forms falling on the spirte sheet
+      frames: this.anims.generateFrameNumbers('hero-die-sheet'),
+    });
+
+    this.addMap();
     // call hero method with the arguments
     this.hero = new Hero(this, 250, 160);
     // provide a platform for the hero to fall from
