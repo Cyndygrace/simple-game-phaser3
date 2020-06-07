@@ -229,7 +229,16 @@ class Game extends Phaser.Scene {
     this.map.createStaticLayer('Foreground', groundTiles);
   }
   // calls the method 60 times per sec.
-  update(time, delta) {}
+    // End and restart game once hero is dead and falls of the screen
+    const cameraButtom = this.cameras.main.getWorldPoint(
+      0,
+      this.cameras.main.height
+    ).y;
+    if (this.hero.isDead() && this.hero.getBounds().top > cameraButtom + 100) {
+      this.hero.destroy();
+      this.addHero();
+    }
+  }
 }
 
 export default Game;
