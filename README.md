@@ -47,7 +47,7 @@ To build for distribution run:
 
 ## Sprite sheet
 
-## texture atlas
+## texture frame atlas
 
 ## texture packer
 
