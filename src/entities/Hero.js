@@ -141,6 +141,14 @@ class Hero extends Phaser.GameObjects.Sprite {
       },
     };
   }
+  // define kill method
+  kill() {
+    if (this.moveState.can('die')) {
+      this.moveState.die();
+      this.animState.die();
+      this.emit('died');
+    }
+  }
 
   preUpdate(time, delta) {
     super.preUpdate(time, delta);
