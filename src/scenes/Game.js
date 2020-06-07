@@ -158,13 +158,13 @@ class Game extends Phaser.Scene {
       this.hero,
       this.map.getLayer('Ground').tilemapLayer
     );
-    // set collission detection between the spikes and hero then call the kill method once 
+    // set collission detection between the spikes and hero then call the kill method once
     const spikeCollider = this.physics.add.overlap(
       this.hero,
       this.spikeGroup,
       () => {
         this.hero.kill();
-  }
+      }
     );
     // what should happen to hero once killed
     // let hero bounce of the screen by removing all collision detecttion with spikes, ground tiles and canvas boundary
@@ -206,7 +206,7 @@ class Game extends Phaser.Scene {
       immovable: true,
       allowGravity: false,
     });
-// get position of hero for the start of game
+    // get position of hero for the start of game
     this.map.getObjectLayer('Objects').objects.forEach((object) => {
       if (object.name === 'Start') {
         this.spawnPos = { x: object.x, y: object.y };
@@ -229,6 +229,7 @@ class Game extends Phaser.Scene {
     this.map.createStaticLayer('Foreground', groundTiles);
   }
   // calls the method 60 times per sec.
+  update(time, delta) {
     // End and restart game once hero is dead and falls of the screen
     const cameraButtom = this.cameras.main.getWorldPoint(
       0,
