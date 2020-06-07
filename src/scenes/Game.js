@@ -133,6 +133,16 @@ class Game extends Phaser.Scene {
     this.addMap();
     // call hero method with the arguments
     this.addHero();
+    // add camera
+    this.cameras.main.setBounds(
+      0,
+      0,
+      this.map.widthInPixels,
+      this.map.heightInPixels
+    );
+
+    // create map image
+  }
   }
 
   // calls the method 60 times per sec.
