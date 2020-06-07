@@ -158,7 +158,14 @@ class Game extends Phaser.Scene {
       this.hero,
       this.map.getLayer('Ground').tilemapLayer
     );
+    // set collission detection between the spikes and hero then call the kill method once 
+    const spikeCollider = this.physics.add.overlap(
+      this.hero,
+      this.spikeGroup,
+      () => {
+        this.hero.kill();
   }
+    );
   }
 
   // calls the method 60 times per sec.
