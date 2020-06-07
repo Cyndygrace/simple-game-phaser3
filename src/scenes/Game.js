@@ -82,6 +82,7 @@ class Game extends Phaser.Scene {
       // keep playing continously
       repeat: -1,
     });
+
     // create animmation for the sprite-sheet
     this.anims.create({
       // key for refernce in other files
