@@ -143,6 +143,8 @@ class Game extends Phaser.Scene {
 
     // create map image
   }
+  addHero() {
+  }
   }
 
   // calls the method 60 times per sec.
