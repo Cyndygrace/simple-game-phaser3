@@ -1,5 +1,6 @@
 /// <reference path="../../typings/phaser.d.ts" />
 import Phaser from 'phaser';
+import config from '../config';
 
 // this class houses the main game logic
 class Game extends Phaser.Scene {
@@ -9,19 +10,36 @@ class Game extends Phaser.Scene {
 
   // preloads all images needed for the game
   preload() {
-    // how to load an image to the scene
-    this.load.image('logo', 'assets/phaser3-logo.png');
+    // load sprite sheet with parameters: key, path and dimension
+    this.load.spritesheet('hero-run-sheet', 'assets/hero/run.png', {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
   }
 
   // creating a new game object and adding it to the scene
   // check docs for game object factory class
   create(data) {
-    // set x and y position of the key/image we want to use , which is also defined in the preload method.
-    this.add.image(400, 300, 'logo');
+    // create animmation for the sprite-sheet
+    this.anims.create({
+      // key for refernce in other files
+      key: 'hero-running',
+      // frame to include all the sprites that forms running on the spirte sheet
+      frames: this.anims.generateFrameNumbers('hero-run-sheet'),
+      // tells phaser to display 10 frames per sec
+      frameRate: 6,
+      // keep playing continously
+      repeat: -1,
+    });
+    // add sprite defined in preload method to scene with x and y position, key and index parameters
+    // the index parameter specifies which one of the spirite image on the texture atlas should be displayed.
+    this.player = this.add.sprite(400, 300, 'hero-run-sheet');
+    // add animation to sprite-sheet
+    this.player.anims.play('hero-running');
   }
 
   // calls the method 60 times per sec.
-  update(time, delta) { }
+  update(time, delta) {}
 }
 
 export default Game;
