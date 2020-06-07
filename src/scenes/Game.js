@@ -9,6 +9,8 @@ class Game extends Phaser.Scene {
 
   // preloads all images needed for the game
   preload() {
+    // load tile map
+    this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-1.json');
     // load sprite sheet for standing idle with parameters: key, path and dimension
     this.load.spritesheet('hero-idle-sheet', 'assets/hero/idle.png', {
       frameWidth: 32,
