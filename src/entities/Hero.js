@@ -149,7 +149,10 @@ class Hero extends Phaser.GameObjects.Sprite {
       this.emit('died');
     }
   }
-
+// check if hero is dead, returns boolean
+  isDead() {
+    return this.moveState.is('dead');
+  }
   preUpdate(time, delta) {
     super.preUpdate(time, delta);
     // returns boolean. returns true if the up key is pressed
