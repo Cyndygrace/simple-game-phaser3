@@ -46,6 +46,11 @@ class Hero extends Phaser.GameObjects.Sprite {
           from: ['idle', 'running', 'pivoting', 'jumping', 'flipping'],
           to: 'falling',
         },
+        {
+          name: 'die',
+          from: ['standing', 'falling', 'jumping', 'flipping'],
+          to: 'dead',
+        },
       ],
       methods: {
         // this method gets called everytime the state changes and will be passed information about the state change which will be in the lifecycle object
