@@ -11,6 +11,14 @@ class Game extends Phaser.Scene {
   preload() {
     // load tile map
     this.load.tilemapTiledJSON('level-1', 'assets/tilemaps/level-1.json');
+
+    // load tile sets image
+    this.load.spritesheet('world-1-sheet', 'assets/titlesets/world-1.png', {
+      frameWidth: 32,
+      frameHeight: 32,
+      margin: 1,
+      spacing: 2,
+    });
     // load sprite sheet for standing idle with parameters: key, path and dimension
     this.load.spritesheet('hero-idle-sheet', 'assets/hero/idle.png', {
       frameWidth: 32,
