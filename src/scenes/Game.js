@@ -177,6 +177,57 @@ class Game extends Phaser.Scene {
     });
   }
 
+  addMap() {
+    // get the level-1 json file, then use to render the images to the browser
+    this.map = this.make.tilemap({ key: 'level-1' });
+    // render the different images/ sections
+    const groundTiles = this.map.addTilesetImage('world-1', 'world-1-sheet');
+    const backgroundTiles = this.map.addTilesetImage('clouds', 'clouds-sheet');
+    const backgroundLayer = this.map.createStaticLayer(
+      'Background',
+      backgroundTiles
+    );
+    // set clouds to scroll slowly while hero is on the move
+    backgroundLayer.setScrollFactor(0.6);
+    // returns a reference to the layer
+    const groundLayer = this.map.createStaticLayer('Ground', groundTiles);
+    // set true to the id of the tiles u want the hero to collide with
+    groundLayer.setCollision([1, 2, 4], true);
+    // add foreground
+    this.physics.world.setBounds(
+      0,
+      0,
+      this.map.widthInPixels,
+      this.map.heightInPixels
+    );
+    this.physics.world.setBoundsCollision(true, true, false, true);
+
+    this.spikeGroup = this.physics.add.group({
+      immovable: true,
+      allowGravity: false,
+    });
+// get position of hero for the start of game
+    this.map.getObjectLayer('Objects').objects.forEach((object) => {
+      if (object.name === 'Start') {
+        this.spawnPos = { x: object.x, y: object.y };
+      }
+      if (object.gid === 7) {
+        const spike = this.spikeGroup.create(
+          object.x,
+          object.y,
+          'world-1-sheet',
+          object.gid - 1
+        );
+        // reposition spike
+        spike.setOrigin(0, 1);
+        // reduce size of spike
+        spike.setSize(object.width - 10, object.height - 10);
+        // reduce collision rectangle for spike
+        spike.setOffset(5, 10);
+      }
+    });
+    this.map.createStaticLayer('Foreground', groundTiles);
+  }
   // calls the method 60 times per sec.
   update(time, delta) {}
 }
