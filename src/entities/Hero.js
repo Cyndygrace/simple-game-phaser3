@@ -107,6 +107,7 @@ class Hero extends Phaser.GameObjects.Sprite {
           from: ['jumping', 'flipping', 'falling'],
           to: 'standing',
         },
+        { name: 'die', from: '*', to: 'dead' },
       ],
       methods: {
         // onEnterState: (lifecycle) => {
