@@ -14,6 +14,7 @@ class Hero extends Phaser.GameObjects.Sprite {
     // add animation to sprite-sheet
     this.anims.play('hero-running');
 
+    this.setOrigin(0.5, 1);
     // prevent body from falling out of the game boundary and collide within the boundary of the world
     this.body.setCollideWorldBounds(true);
     // set size of collission rectangle
@@ -123,7 +124,7 @@ class Hero extends Phaser.GameObjects.Sprite {
         onDie: () => {
           this.body.setVelocity(0, -500);
           this.body.setAcceleration(0);
-      },
+        },
       },
     });
     this.movePredicates = {
@@ -149,16 +150,17 @@ class Hero extends Phaser.GameObjects.Sprite {
       this.emit('died');
     }
   }
-// check if hero is dead, returns boolean
+  // check if hero is dead, returns boolean
   isDead() {
     return this.moveState.is('dead');
   }
   preUpdate(time, delta) {
     super.preUpdate(time, delta);
     // returns boolean. returns true if the up key is pressed
-    this.input.didPressJump = Phaser.Input.Keyboard.JustDown(this.keys.up);
+    this.input.didPressJump =
+      !this.isDead() && Phaser.Input.Keyboard.JustDown(this.keys.up);
 
-    if (this.keys.left.isDown) {
+    if (!this.isDead() && this.keys.left.isDown) {
       // move left with left arrow key
       // reach 250 in quater of a second, set velocity to 4 * 250
       // reduce or increase set velocity value to balance movement speed with hero body movement
@@ -169,7 +171,7 @@ class Hero extends Phaser.GameObjects.Sprite {
 
       // reset the collision rectangle during flip (32-12-12)(horizontal texture atlas - horizontal collission rectangle - offset rectangle)
       this.body.offset.x = 8;
-    } else if (this.keys.right.isDown) {
+    } else if (!this.isDead() && this.keys.right.isDown) {
       // move right with right arrorw key
       this.body.setAccelerationX(1000);
       // reset flip when hero is running in opposite direction
