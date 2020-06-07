@@ -51,6 +51,11 @@ class Game extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 64,
     });
+    // load die sprite
+    this.load.spritesheet('hero-die-sheet', 'assets/hero/bonk.png', {
+      frameWidth: 32,
+      frameHeight: 64,
+    });
   }
 
   // creating a new game object and adding it to the scene
