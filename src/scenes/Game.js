@@ -153,6 +153,11 @@ class Game extends Phaser.Scene {
       this.hero,
       this.children.getIndex(this.map.getLayer('Foreground').tilemapLayer)
     );
+    // set collission detection between the hero and the ground/tiles
+    const groundCollider = this.physics.add.collider(
+      this.hero,
+      this.map.getLayer('Ground').tilemapLayer
+    );
   }
   }
 
