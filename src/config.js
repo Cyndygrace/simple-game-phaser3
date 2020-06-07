@@ -11,11 +11,29 @@ export default {
   // background color of the canvas
   backgroundColor: '#33A5E7',
   scale: {
-    width: 800,
-    height: 600,
+    width: 500,
+    height: 300,
     // FIT is use by phaser to fill the screen with the defined width and height of the canvas
     mode: Phaser.Scale.FIT,
     // center horizontally and vertically
     autoCenter: Phaser.Scale.CENTER_BOTH,
+  },
+
+  render: {
+    // makes character/image not blurry
+    pixelArt: true,
+  },
+  physics: {
+    // specigy physics engine
+    default: 'arcade',
+    arcade: {
+      // set gravity to velocity of 750pixel per second to any physics body in downwards direction.
+      gravity: { y: 750 },
+      // for debugging purposes
+      debug: false,
+      debugShowVelocity: true,
+      debugShowBody: true,
+      debugShowStaticBody: true,
+    },
   },
 };
