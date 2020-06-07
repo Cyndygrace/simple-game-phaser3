@@ -149,6 +149,10 @@ class Game extends Phaser.Scene {
     // to view the rest of the world to the end that is hidden when screen loads as hero is moving
     this.cameras.main.startFollow(this.hero);
     // switch index of foreground and hero so that foreground is drawn infront of hero
+    this.children.moveTo(
+      this.hero,
+      this.children.getIndex(this.map.getLayer('Foreground').tilemapLayer)
+    );
   }
   }
 
