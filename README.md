@@ -1,3 +1,6 @@
+# Deployed
+https://quirky-williams-01886a.netlify.app/
+
 # Phaser 3 + ES6 + Webpack Boilerplate
 
 A boilerplate project for creating games with Phaser3, ES6 and Webpack.
@@ -51,7 +54,8 @@ To build for distribution run:
 
 ## texture packer
 
-## Movement
+## Movement to play game
+This game can only be played with a keyboard
 
 Left arrow key to move left
 right arrow key to move right
